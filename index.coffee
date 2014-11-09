@@ -10,6 +10,8 @@ unless TARGET_URL and CRON_INTERVAL
   debug "CRON_INTERVAL: #{CRON_INTERVAL}"
   return
 
+debug "env var check succeeded."
+
 try
   job  = new Cron 
     cronTime: CRON_INTERVAL
@@ -18,7 +20,12 @@ try
     onComplete: ->
       debug "Cron Finshed"
     start: false
+
+  debug "job created."
+
   do job.start
+
+  debug "job started."
 
 catch e
   debug "Error: #{e}"
