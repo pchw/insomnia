@@ -1,5 +1,6 @@
 debug = require('debug')('insomnia')
 {CronJob:Cron} = require 'cron'
+request = require 'superagent'
 
 TARGET_URL = process.env.TARGET_URL
 CRON_INTERVAL = process.env.CRON_INTERVAL
@@ -10,22 +11,26 @@ unless TARGET_URL and CRON_INTERVAL
   debug "CRON_INTERVAL: #{CRON_INTERVAL}"
   return
 
-debug "env var check succeeded."
+debug "Env var check succeeded."
 
 try
   job  = new Cron 
     cronTime: CRON_INTERVAL
     onTick: ->
       debug "Cron Triggered"
+      request
+      .get("#{TARGET_URL}")
+      .end (res)->
+        debug "Response received. status: #{res.status}"
     onComplete: ->
       debug "Cron Finshed"
     start: false
 
-  debug "job created."
+  debug "Job created."
 
   do job.start
 
-  debug "job started."
+  debug "Job started."
 
 catch e
   debug "Error: #{e}"
