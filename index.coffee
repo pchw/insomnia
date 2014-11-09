@@ -10,8 +10,6 @@ unless TARGET_URL and CRON_INTERVAL
   debug "CRON_INTERVAL: #{CRON_INTERVAL}"
   return
 
-{CronJob:Cron} = require 'cron'
-
 try
   job  = new Cron 
     cronTime: CRON_INTERVAL
