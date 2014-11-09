@@ -8,6 +8,7 @@ unless TARGET_URL and CRON_INTERVAL
   debug "TARGET_URL or CRON_INTERVAL unspecified."
   debug "TARGET_URL: #{TARGET_URL}"
   debug "CRON_INTERVAL: #{CRON_INTERVAL}"
+  return
 
 {CronJob:Cron} = require 'cron'
 
