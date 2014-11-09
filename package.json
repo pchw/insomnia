@@ -1,0 +1,18 @@
+{
+  "name": "insomnia",
+  "version": "0.0.0",
+  "description": "awake heroku process",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "author": "pchw",
+  "license": "MIT",
+  "dependencies": {
+    "cron": "^1.0.5",
+    "coffee-script": "^1.8.0"
+  }
+}
