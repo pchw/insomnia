@@ -2,5 +2,11 @@
   "name": "insomnia",
   "description": "Awake specified heroku process",
   "repository": "https://github.com/pchw/insomnia",
-  "keywords": ["node", "cron", "heorku", "scheduler"]
+  "keywords": ["node", "cron", "heorku", "scheduler"],
+  "env":{
+    "TARGET_URL": "",
+    "CRON_INTERVAL": "",
+    "BASIC_USERNAME": "",
+    "BASIC_PASSWORD": ""
+  }
 }

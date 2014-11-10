@@ -4,6 +4,8 @@ request = require 'superagent'
 
 TARGET_URL = process.env.TARGET_URL
 CRON_INTERVAL = process.env.CRON_INTERVAL
+BASIC_USERNAME = proeces.env.BASIC_USERNAME
+BASIC_PASSWORD = proeces.env.BASIC_PASSWORD
 
 unless TARGET_URL and CRON_INTERVAL
   debug "TARGET_URL or CRON_INTERVAL unspecified."
@@ -18,9 +20,13 @@ try
     cronTime: CRON_INTERVAL
     onTick: ->
       debug "Cron Triggered"
-      request
+      r = request
       .get("#{TARGET_URL}")
-      .end (res)->
+
+      if BASIC_USERNAME
+        r = r.auth(BASIC_USERNAME, BASIC_PASSWORD)
+      
+      r.end (res)->
         debug "Response received. status: #{res.status}"
     onComplete: ->
       debug "Cron Finshed"
